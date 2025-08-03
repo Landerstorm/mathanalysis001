@@ -1,0 +1,43 @@
+
+\documentclass[UTF8]{ctexbeamer}
+\usetheme{Madrid}
+%\usecolortheme{beaver}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.eps,.ps,.jpg,.bmp,.png}
+
+%Information to be included in the title page:
+\title{X}
+\author{Deli}
+\institute{Deli institute}
+\date{\today}
+\title[Deli beamer tutorial] %optional
+{main title deli beamer tutorial}
+% [] {} 两个还是有区别的，具体的差异尝试编译一下就了解了。
+
+\subtitle{tutorial}
+% 副标题，beamer的默认模板中基本上这些内容都有
+
+\author[Group Deli] % (optional, for multiple authors)
+{Deli1\inst{1} \and Deli2\inst{2}}
+
+\institute[VFU] % (optional)
+{
+	\inst{1}%
+	Faculty of Physics\\
+	Very Famous University
+	\and
+	\inst{2}%
+	Faculty of Chemistry\\
+	Very Famous University
+}
+
+\date[May 2020] % (optional)
+{Very Large Conference, April 2013}
+%在每个section 前边单独插入当前章节高亮的目录页（当然最原始的目录页你还是需要手动录入的，不要想偷懒）
+\AtBeginSection[]
+{
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
