@@ -1,1 +1,297 @@
+% 笔记模板
+
+% 定义文档类型为ctexbook(中文书本)
+\documentclass[12pt, a4paper, oneside]{ctexbook}
+
+% 导入各种包
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{bm}        % 用于加粗公式中的字母
+\usepackage{amsmath}   % 数学公式
+\usepackage{amsthm}    % 定理环境
+\usepackage{amssymb}   % 更多公式符号
+\usepackage{graphicx}  % 插图
+\usepackage{mathrsfs}  % 数学字体
+\usepackage{enumitem}  % 列表
+\usepackage{geometry}  % 页面调整
+\usepackage{unicode-math}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+
+% 创建各种环境
+\newtheorem{example}{\color{SeaGreen}{例}}  % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]  % 按 section 编号
+\newtheorem{definition}{定义}[section]
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+% 两种方式定义中文的 证明 和 解 的环境：
+% 方式一：(缺点：\qedhere 命令将会失效【技术有限，暂时无法解决】)
+\renewenvironment{proof}{\par\textbf{证明.}\;}{\qed\par}
+\newenvironment{solution}{\par{\textbf{解.}}\;}{\qed\par}
+% 方式二：(缺点：\bf 是过时命令，可以用 textb f等替代，但编译会有关于字体的警告，不过不影响使用【技术有限，暂时无法解决】)
+%\renewcommand{\proofname}{\indent\bf 证明}
+%\newenvironment{solution}{\begin{proof}[\indent\bf 解]}{\end{proof}}
+
+
+%↓↓↓↓↓↓↓↓↓↓↓==================== 以下是自定义的命令 =================================↓↓↓↓↓↓↓↓↓↓↓
+
+\def\d{\textup{d}} % 直立体 d 用于微分符号 dx
+\def\R{\mathbb{R}} % 实数域
+
+% 用于调整表格的高度  使用 \hline\xrowht{25pt}
+\newcommand{\xrowht}[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+
+% 表格环境内长内容换行
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+% 使用\linespread{1.5} 之后 cases 环境的行高也会改变，重新定义一个 ca 环境可以自动控制 cases 环境行高
+\newenvironment{ca}[1][1]{\linespread{#1} \selectfont \begin{cases}}{\end{cases}}
+% 和上面一样
+\newenvironment{vx}[1][1]{\linespread{#1} \selectfont \begin{vmatrix}}{\end{vmatrix}}
+
+\def\d{\textup{d}} % 直立体 d 用于微分符号 dx
+\def\R{\mathbb{R}} % 实数域
+\newcommand{\bs}[1]{\boldsymbol{#1}}    % 加粗，常用于向量
+\newcommand{\ora}[1]{\overrightarrow{#1}} % 向量
+
+% 数学 平行 符号
+\newcommand{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}
+
+% 用于空行\myspace{1} 表示空一行 填 2 表示空两行  
+\newcommand{\myspace}[1]{\par\vspace{#1\baselineskip}}
+%↑↑↑↑↑↑↑↑↑↑========================================================================↑↑↑↑↑↑↑↑↑↑
+
+
+% 页码设置
+\geometry{top=25.4mm,bottom=25.4mm,left=20mm,right=20mm,headheight=2.17cm,headsep=4mm,footskip=12mm}
+
+% 设置列表环境的上下间距
+\setenumerate[1]{itemsep=5pt,
+                partopsep=0pt,
+                parsep=\parskip,
+                topsep=5pt}
+\setitemize[1]{itemsep=5pt,
+                partopsep=0pt,
+                parsep=\parskip,
+                topsep=5pt}
+\setdescription{itemsep=5pt,
+                partopsep=0pt,
+                parsep=\parskip,
+                topsep=5pt}
+
+
+% --------------------------*- ↑ 导言区 ↑ -*--------------------------------
+% -------------------------------******-------------------------------------
+
+\title{{\Huge{\textbf{笔记本标题}}}\\——副标题}
+\author{Lance}
+\date{\today}
+\linespread{1.5}
+
+\begin{document}
+
+    \maketitle
+
+    \pagenumbering{roman}   % 页码字体为roman
+    \setcounter{page}{1}    % 当前页设置为 page 1
+
+    % 前言
+    \begin{center}
+        \Huge\textbf{前言}
+    \end{center}~\
+    这是笔记的前言部分. 
+    ~\\
+    % 右对齐署名, 日期
+    \begin{flushright}
+        \begin{tabular}{c}
+            Lance\\
+            \today
+        \end{tabular}
+    \end{flushright}
+
+    \newpage
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+
+    \tableofcontents
+
+    \newpage
+    \setcounter{page}{1}
+    \pagenumbering{arabic}
+
+
+    \chapter{曲线积分与曲面积分}
+
+    在这里可以输入笔记的内容. 
+
+        \section{Gauss 公式}
+
+        这是笔记的正文部分.
+
+        \begin{remark}
+            以下是随机选取的演示部分（仅作演示）.
+        \end{remark}
+
+        % 墨绿色文本框美化
+        \begin{tcolorbox}[
+            title=\textbf{\textcolor{white}{Theorem}},
+            colback=Emerald!10,
+            colframe=cyan!40!black]
+
+            \begin{theorem}
+                设空间闭区域$\Omega$由分片光滑的闭曲面$\Sigma$围成，若函数$P(x,y,z),\;Q(x,y,z) \\ ,R(x,y,z)$在$\Omega$上具有一阶连续偏导数，则有
+                \begin{equation}
+                    \iiint_{\Omega} \bigg(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z} \bigg)\d v = \oiint_{\Sigma}P\d y\d z+Q\d z\d x+R\d x\d y
+                \end{equation}
+                或
+                \begin{equation}
+                    \iiint_{\Omega} \bigg(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z} \bigg)\d v = \oiint_{\Sigma}(P\cos\alpha+Q\cos\beta+R\cos\gamma)\d S
+                \end{equation}
+                这里$\Sigma$是$\Omega$的整个边界曲面的外侧，$\cos\alpha,\;\cos\beta,\;\cos\gamma$是$\Sigma$在点$(x,y,z)$处的法向量的单位余弦.
+            \end{theorem}
+
+        \end{tcolorbox}
+
+        \begin{proof}
+            设闭区域$\Omega$在$xOy$平面上的投影区域为$D_{xy}$，假定穿过$\Omega$内部且平行于$z$轴的直线与$\Omega$的边界曲面$\Sigma$的交点恰是两个，可设$\Sigma$由$\Sigma_1,\;\Sigma_2$和$\Sigma_3$三部分组成，其中$\Sigma_1$和$\Sigma_2$分别由方程$z = z_1(x,y)$和$z = z_2(x,y)$给定，这里$z_1(x,y) \le z_2(x,y)$，$\Sigma_1$取下侧，$\Sigma_2$取上侧，$\Sigma_3$是以$D_{xy}$的边界曲线为准线而母线平行于$z$轴的柱面上的一部分，取外侧.
+        
+            由三重积分的计算法，有
+            \begin{align*}
+                \iiint_{\Omega}\frac{\partial R}{\partial z}\d v & = \iint_{D_{xy}}\bigg(\int_{z_1(x,y)}^{z_2(x,y)} \frac{\partial R}{\partial z}\d z\bigg) \d x\d y \\
+                                                                 & =\iint_{D_{xy}}\Big\{R\big[x,y,z_2(x,y)\big]-R\big[x,y,z_1(x,y)\big]\Big\}\d x\d y
+            \end{align*}
+            又由曲面积分的计算法，有
+            \begin{gather*}
+                \iint_{\Sigma_1}R(x,y,z)\d x\d y = -\iint_{D_{xy}}R\big[x,y,z_1(x,y) \big]\d x\d y \\
+                \iint_{\Sigma_2}R(x,y,z)\d x\d y = \iint_{D_{xy}}R\big[x,y,z_2(x,y) \big]\d x\d y
+            \end{gather*}
+            而$\Sigma_3$上任意一块曲面在$xOy$面上的投影为零，由对坐标的曲面积分的定义可知
+            \[
+                \iint_{\Sigma_3}R(x,y,z)\d x\d y = 0
+            \]
+            上述三式相加有
+            \[
+                \oiint_{\Sigma}R(x,y,z)\d x\d y = \iint_{D_{xy}}\Big[R\big[x,y,z_2(x,y)\big]-R\big[x,y,z_1(x,y)\big]\Big]\d x\d y
+            \]
+            易得
+            \[
+                \iiint_{\Omega}\frac{\partial R}{\partial z}\d v = \oiint_{\Sigma}R(x,y,z)\d x\d y
+            \]
+            如果穿过$\Omega$内部且平行于$x$轴的直线以及平行于$y$轴的直线与$\Omega$的边界曲面$\Sigma$的的交点恰好也是两个，类似地可得
+            \[
+                \iiint_{\Omega}\frac{\partial P}{\partial x}\d v = \oiint_{\Sigma}P(x,y,z)\d y\d z,\enspace \iiint_{\Omega}\frac{\partial Q}{\partial y}\d v = \oiint_{\Sigma}Q(x,y,z)\d z\d x
+            \]
+            上述三式相加即有 \textbf{Gauss} 公式.
+        \end{proof}
+
+        \begin{example}
+            求微分方程$y''-2y'-3y=3x+1$的一个特解.
+        \end{example}
+
+        \begin{solution}
+            这是二阶常系数非齐次线性微分方程，且函数$f(x)$是$e^{\lambda{x}}P_m(x)$型，其中
+            \[
+                \lambda = 0,\;P_m(x) = 3x+1
+            \]
+            与所给方程对应的齐次方程为
+            \[
+                y''-2y'-3y=0
+            \]
+            其特征方程为
+            \[
+                r^2-2r-3 = 0
+            \]
+            由于$\lambda = 0$不是特征方程的根，所以设特解
+            \[
+                y* = b_0 x + b_1
+            \]
+            带入所给方程，得
+            \[
+                -3b_0 x - 2b_0 - 3b_1 = 3x+1
+            \]
+            比较等式两端$x$同次幂的系数，易得$b_0 = -1,\;b_1 = \dfrac{1}{3}$，于是求得一个特解为
+            \[
+                y* = -x + \frac{1}{3}
+            \]
+        \end{solution}
+
+
+        % 经典蓝色文本框美化
+        \begin{tcolorbox}[
+            title=\textbf{\textcolor{white}{Definition}},
+            colback=SeaGreen!10!CornflowerBlue!10,
+            colframe=RoyalPurple!55!Aquamarine!100!]
+            
+            \begin{definition}
+                设二元函数$f(P) = f(x,\,y)$的定义域为$D$，点$P_0(x_0,\,y_0)$是$D$的聚点，如果存在常数$A$，对于任意给定正数$\varepsilon$，总存在正整数$\delta$，使得当点$P(x,\,y) \in D \cap \mathring{U}(P_0,\,\delta)$时，都有
+                \[
+                    |f(P)-A| = |f(x,\,y) - A| < \varepsilon
+                \]
+                成立，那么就称常数$A$为函数$f(x,\,y)$当$(x,\,y) \to (x_0,\,y_0)$时的极限（二重极限），记作
+                \[
+                    \lim_{(x,\,y) \to (x_0,\,y_0)}f(x,\,y) = A \quad \lor \quad \lim_{P \to P_0}f(P) = A
+                \]
+            \end{definition}
+
+        \end{tcolorbox}
+
+
+        % 莫兰迪棕色文本框美化
+        \begin{tcolorbox}[
+            title = \textbf{\textcolor{white}{Proposition}},
+            colback=Salmon!20, 
+            colframe=Salmon!90!Black]
+            
+            任意一点$P \in \R^2$与任意一个点集$E \subset \R^2$之间有以下三种关系的一种：
+            \begin{itemize}[leftmargin=45pt]
+                \item \textbf{内点}：如果存在点$P$的某个邻域$U(P)$，使得$U(P) \subset E$，那么称$P$为$E$的内点.
+                \item \textbf{外点}：如果存在点$P$的某个邻域$U(P)$，使得$U(P) \cap E = \varnothing$，那么称$P$为$E$的外点.
+                \item \textbf{边界点}：如果点$P$在任意邻域内既含有属于$E$的点，又含有不属于$E$的点，那么称$P$为$E$的边界点.
+            \end{itemize}
+
+        \end{tcolorbox}
+
+
+        % 红色醒目文本框美化
+        \begin{tcolorbox}[
+            title=\textbf{\textcolor{white}{Theorem}}, 
+            colback=red!5,
+            colframe=red!75!black]
+            红色醒目文本框美化
+
+
+        \end{tcolorbox}
+
+
+        % 绿色提示框
+        \begin{tcolorbox}[
+            title=\textbf{\textcolor{white}{Corollary}},
+            colback=OliveGreen!10,
+            colframe=Green!70]
+            绿色提示框
+
+
+        \end{tcolorbox}
+
+        % 蓝色提示框
+        \begin{tcolorbox}[
+            title=\textbf{\textcolor{white}{Tips}},
+            colback=JungleGreen!10!Cerulean!15,
+            colframe=CornflowerBlue!60!Black]
+            蓝色提示框
+
+            
+        \end{tcolorbox}
+
+        
+\end{document}
+
 
